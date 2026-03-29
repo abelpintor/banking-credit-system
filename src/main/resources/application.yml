@@ -1,0 +1,31 @@
+spring:
+    application:
+        name: project
+
+
+    datasource:
+        url: jdbc:mysql://localhost:3306/bank_credit_core?useSSL=false&serverTimezone=UTC
+        username: root
+        password: 1234
+        driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        show-sql: true
+        properties:
+            hibernate:
+                "[format_sql]": true
+                # optional: specify the dialect for MySQL 8
+                dialect: org.hibernate.dialect.MySQL8Dialect
+
+    flyway:
+        enabled: true
+        locations: classpath:db/migration
+        # optional: specify the baseline version if you have existing schema, to avoid new migrations being applied to an existing database
+        baseline-on-migrate: true
+        # flyway will consider the database to be at version 1.0 if it is empty, and will apply all migrations with a version higher than 1.0
+        baseline-version: 1.0
+                
+
+
